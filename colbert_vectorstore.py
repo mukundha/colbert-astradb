@@ -90,7 +90,7 @@ class Astra_ColBERT_VectorStore(VectorStore):
         for (part, source) in scores:
             rows = self.collection.find({"part":part, "metadata.source": source})
             for row in rows['data']['documents']:
-                results.append(Document(page_content=row[], metadata=row['metadata']))
+                results.append(Document(page_content=row['content'], metadata=row['metadata']))
         return results
     
     def get_embedding(self, doc_id: str) -> Embeddings:
